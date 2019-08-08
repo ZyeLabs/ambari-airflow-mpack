@@ -22,7 +22,7 @@
 			<name>AIRFLOW</name>
 			<displayName>Airflow</displayName>
 			<comment>Airflow is a platform to programmatically author, schedule and monitor workflows.</comment>
-			<version>1.10.0</version>
+			<version>1.10.4</version>
 			<components>
 				<component>
 					<name>AIRFLOW_WEBSERVER</name>
@@ -95,8 +95,8 @@
 						<package><name>libssl-dev</name></package>
 						<package><name>libkrb5-dev</name></package>
 						<package><name>openssl-dev</name></package>
-						<package><name>python-dev</name></package>	
-						<package><name>python-pip</name></package>	   
+						<package><name>python-dev</name></package>
+						<package><name>python-pip</name></package>
 						<package><name>build-essential</name></package>
 						<package><name>python-pip</name></package>
 						<package><name>libghc-zlib-dev</name></package>

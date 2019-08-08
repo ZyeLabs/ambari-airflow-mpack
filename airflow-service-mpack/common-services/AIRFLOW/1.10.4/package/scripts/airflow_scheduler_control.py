@@ -5,7 +5,7 @@ from airflow_setup import *
 
 class AirflowScheduler(Script):
 	"""
-	Contains the interface definitions for methods like install, 
+	Contains the interface definitions for methods like install,
 	start, stop, status, etc. for the Airflow Server
 	"""
 	def install(self, env):
@@ -16,8 +16,8 @@ class AirflowScheduler(Script):
 		Execute(format("pip install --upgrade {airflow_pip_params} pip"))
 		Execute(format("pip install --upgrade {airflow_pip_params} setuptools"))
 		Execute(format("pip install --upgrade {airflow_pip_params} docutils pytest-runner Cython==0.28"))
-		Execute(format("export SLUGIFY_USES_TEXT_UNIDECODE=yes && pip install --upgrade {airflow_pip_params} --ignore-installed apache-airflow[all]==1.10.0"))
-		Execute(format("export SLUGIFY_USES_TEXT_UNIDECODE=yes && pip install --upgrade {airflow_pip_params} --ignore-installed apache-airflow[celery]==1.10.0"))
+		Execute(format("export SLUGIFY_USES_TEXT_UNIDECODE=yes && pip install --upgrade {airflow_pip_params} --ignore-installed apache-airflow[all]==1.10.4"))
+		Execute(format("export SLUGIFY_USES_TEXT_UNIDECODE=yes && pip install --upgrade {airflow_pip_params} --ignore-installed apache-airflow[celery]==1.10.4"))
 		Execute(format("chmod 755 /bin/airflow /usr/bin/airflow"))
 		Execute(format("useradd {airflow_user}"), ignore_failures=True)
 		Execute(format("mkdir -p {airflow_home}"))
@@ -32,12 +32,12 @@ class AirflowScheduler(Script):
 		env.set_params(params)
 		airflow_configure(env)
 		airflow_make_systemd_scripts_scheduler(env)
-		
+
 	def start(self, env):
 		import params
 		self.configure(env)
 		Execute("service airflow-scheduler start")
-		Execute('ps -ef | grep "airflow scheduler" | grep -v grep | awk \'{print $2}\' | tail -n 1 > ' + params.airflow_scheduler_pid_file, 
+		Execute('ps -ef | grep "airflow scheduler" | grep -v grep | awk \'{print $2}\' | tail -n 1 > ' + params.airflow_scheduler_pid_file,
 			user=params.airflow_user
 		)
 
